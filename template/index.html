@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link id="bootstrap-theme" href="bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Font Awesome icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <link href="styles.css" rel="stylesheet">
+
+    <title>Minstagram</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <header class="col-12">
+          <nav id="top-nav" class="navbar navbar-expand-md navbar-light bg-light">
+            <a class="navbar-brand" href="#">Minstagram</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <form class="form-inline my-2 my-lg-0 mx-auto">
+                <input class="form-control mr-sm-2" name="Search" type="search" placeholder="Search" />
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              </form>
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                  <a id="theme-switcher" class="nav-link" href="#"><i class="far fa-compass"></i></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#"><i class="far fa-heart"></i></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#"><i class="far fa-user"></i></a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </header>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <form id="new-post" class="form-inline justify-content-center mt-2">
+            <input name="new-post" type="text" class="form-control mb-2 mr-sm-2" placeholder="Subject" />
+            <button class="btn btn-primary mb-2" type="submit">Post it!</button>
+          </form>
+        </div>
+      </div>
+      <div class="row">
+        <main id="post-container" class="col-lg-9">
+
+          <div class="post card mx-auto mb-2">
+            <img class="card-img-top" alt="img1" src="assets/img1.jpg" />
+            <div class="card-body">
+              <img alt="avatar1" src="assets/avatar1.jpg" class="avatar float-left mr-2" />
+              <h5 class="card-title my-auto">Alice</h5>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sollicitudin, nisl nec egestas sollicitudin, est tortor egestas quam, nec venenatis ex libero cursus quam. Donec non nulla a mauris euismod consectetur eget quis lorem. Suspendisse quis orci non magna elementum rhoncus in a nisl. Etiam ipsum arcu, iaculis vel massa ac, vulputate ultricies diam. Aliquam aliquet augue neque, eget euismod ante efficitur sit amet. Cras mi ligula, molestie quis imperdiet at, sagittis quis tellus. Sed pretium enim orci, at feugiat diam blandit posuere. Etiam sit amet hendrerit ligula. Suspendisse ut faucibus felis.</p>
+              <button class="hide btn btn-secondary btn-sm position-absolute">Hide</button>
+              <i class="like float-right far fa-heart"></i>
+            </div>
+          </div>
+
+          <div class="post card mx-auto mb-2">
+            <img class="card-img-top" alt="img2" src="assets/img2.jpg" />
+            <div class="card-body">
+              <img alt="avatar1" src="assets/avatar2.jpg" class="avatar float-left mr-2" />
+              <h5 class="card-title my-auto">Bob</h5>
+              <p class="card-text">Integer ex risus, pharetra eu nulla eget, semper pharetra mi.</p>
+              <button class="hide btn btn-secondary btn-sm position-absolute">Hide</button>
+              <i class="like float-right far fa-heart"></i>
+            </div>
+          </div>
+          
+        </main>
+        
+        <aside id="suggestions" class="col-sm-auto">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Suggestions</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <img alt="avatar1" src="assets/avatar1.jpg" class="avatar mr-2" />Alice
+              </li>
+              <li class="list-group-item">
+                <img alt="avatar2" src="assets/avatar2.jpg" class="avatar mr-2" />Bob
+              </li>
+            </ul>
+          </div>
+          <small>&copy; 2019 MINSTAGRAM</small>
+        </aside>
+        
+      </div>
+    </div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="data.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
