@@ -42,32 +42,31 @@ class App extends React.Component {
         const avatar = images.nanogif.url;
         const image = images.gif.url;
         const name = result.title || subject;
-        const text = 'Post description';
 
-        const newPost = {
-          image: image,
-          avatar: avatar,
-          name: name,
-          text: text
-        };
+        fetch('https://baconipsum.com/api/?type=meat-and-filler&paras=1')
+          .then(response => response.json())
+          .then(bacon => {
+            const text = bacon[0];
 
-        const oldPosts = this.state.posts;
-        const newPosts = [newPost, ...oldPosts];
-        this.setState({ posts: newPosts });
+            const newPost = {
+              image: image,
+              avatar: avatar,
+              name: name,
+              text: text
+            };
+
+            const oldPosts = this.state.posts;
+            const newPosts = [newPost, ...oldPosts];
+            this.setState({ posts: newPosts });
+          });
       });
   }
 
-  componentDidMount() {
-    setTimeout(() => {
-      this.addPost('cat');
-    }, 2000);
-  }
-  
   render() {
     return (
     <div className="container">
       <Header />
-      <NewPost />
+      <NewPost addPost={this.addPost} />
       <div className="row">
         <Posts posts={this.state.posts} />
         <Suggestions />
