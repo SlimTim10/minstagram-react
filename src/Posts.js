@@ -8,7 +8,7 @@ class Posts extends React.Component {
         <img className="card-img-top" alt="img1" src={post.image} />
         <div className="card-body">
           <img alt="avatar1" src={post.avatar} className="avatar float-left mr-2" />
-          <h5 className="card-title my-auto">Alice</h5>
+          <h5 className="card-title my-auto">{post.name}</h5>
           <p className="card-text">{post.text}</p>
           <button className="hide btn btn-secondary btn-sm position-absolute">Hide</button>
           <i className="like float-right far fa-heart"></i>
