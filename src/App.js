@@ -30,43 +30,11 @@ class App extends React.Component {
     };
   }
 
-  addPost = subject => {
-    const rootEndpoint = `https://api.tenor.com/v1/random?key=${TENOR_API_KEY}`;
-    const endpoint = rootEndpoint + `&contentfilter=high&media_filter=basic&limit=1&q=${subject}`;
-
-    fetch(endpoint)
-      .then(response => response.json())
-      .then(data => {
-        const result = data.results[0];
-        const images = result.media[0];
-        const avatar = images.nanogif.url;
-        const image = images.gif.url;
-        const name = result.title || subject;
-
-        fetch('https://baconipsum.com/api/?type=meat-and-filler&paras=1')
-          .then(response => response.json())
-          .then(bacon => {
-            const text = bacon[0];
-
-            const newPost = {
-              image: image,
-              avatar: avatar,
-              name: name,
-              text: text
-            };
-
-            const oldPosts = this.state.posts;
-            const newPosts = [newPost, ...oldPosts];
-            this.setState({ posts: newPosts });
-          });
-      });
-  }
-
   render() {
     return (
     <div className="container">
       <Header />
-      <NewPost addPost={this.addPost} />
+      <NewPost />
       <div className="row">
         <Posts posts={this.state.posts} />
         <Suggestions />
