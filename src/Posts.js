@@ -4,7 +4,7 @@ class Posts extends React.Component {
   render() {
 
     const posts = this.props.posts.map(post => (
-      <div className="post card mx-auto mb-2">
+      <div key={post.id} className="post card mx-auto mb-2">
         <img className="card-img-top" alt="img1" src={post.image} />
         <div className="card-body">
           <img alt="avatar1" src={post.avatar} className="avatar float-left mr-2" />

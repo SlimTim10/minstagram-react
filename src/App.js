@@ -6,7 +6,12 @@ import NewPost from './NewPost';
 import Posts from './Posts';
 import Suggestions from './Suggestions';
 
-const TENOR_API_KEY = '';
+const TENOR_API_KEY = ''';
+
+const generateRandomID = () => {
+  const chars = 'abcdefghijklmnopqrstuvwxyz1234567890';
+  return [...Array(6)].map(x => chars.split('')[Math.floor(Math.random()*chars.length)]).join('');
+}
 
 class App extends React.Component {
   constructor(props) {
@@ -15,16 +20,20 @@ class App extends React.Component {
     this.state = {
       posts: [
         {
+          id: '1',
           image: 'assets/img1.jpg',
           avatar: 'assets/avatar1.jpg',
           name: 'Alice',
-          text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sollicitudin, nisl nec egestas sollicitudin, est tortor egestas quam, nec venenatis ex libero cursus quam. Donec non nulla a mauris euismod consectetur eget quis lorem. Suspendisse quis orci non magna elementum rhoncus in a nisl. Etiam ipsum arcu, iaculis vel massa ac, vulputate ultricies diam. Aliquam aliquet augue neque, eget euismod ante efficitur sit amet. Cras mi ligula, molestie quis imperdiet at, sagittis quis tellus. Sed pretium enim orci, at feugiat diam blandit posuere. Etiam sit amet hendrerit ligula. Suspendisse ut faucibus felis.'
+          text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sollicitudin, nisl nec egestas sollicitudin, est tortor egestas quam, nec venenatis ex libero cursus quam. Donec non nulla a mauris euismod consectetur eget quis lorem. Suspendisse quis orci non magna elementum rhoncus in a nisl. Etiam ipsum arcu, iaculis vel massa ac, vulputate ultricies diam. Aliquam aliquet augue neque, eget euismod ante efficitur sit amet. Cras mi ligula, molestie quis imperdiet at, sagittis quis tellus. Sed pretium enim orci, at feugiat diam blandit posuere. Etiam sit amet hendrerit ligula. Suspendisse ut faucibus felis.',
+          liked: false
         },
         {
+          id: '2',
           image: 'assets/img2.jpg',
           avatar: 'assets/avatar2.jpg',
           name: 'Bob',
-          text: 'Integer ex risus, pharetra eu nulla eget, semper pharetra mi.'
+          text: 'Integer ex risus, pharetra eu nulla eget, semper pharetra mi.',
+          liked: false
         }
       ]
     };
@@ -49,6 +58,7 @@ class App extends React.Component {
             const text = bacon[0];
 
             const newPost = {
+              id: generateRandomID(),
               image: image,
               avatar: avatar,
               name: name,
@@ -60,6 +70,22 @@ class App extends React.Component {
             this.setState({ posts: newPosts });
           });
       });
+  }
+
+  likePost = id => {
+    const idx = this.state.posts.findIndex(post => post.id === id);
+    const post = this.state.posts[idx];
+    post.liked = !post.liked;
+    this.setState({
+      posts: [...this.state.posts.slice(0, idx), post, ...this.state.posts.slice(idx + 1)]
+    });
+  }
+
+  componentDidMount() {
+    setTimeout(() => {
+      this.likePost('2');
+      this.likePost('2');
+    }, 2000);
   }
 
   render() {

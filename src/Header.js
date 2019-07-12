@@ -6,7 +6,7 @@ class Header extends React.Component {
       <div className="row">
         <header className="col-12">
           <nav id="top-nav" className="navbar navbar-expand-md navbar-light bg-light">
-            <a className="navbar-brand" href="#">Minstagram</a>
+            <a href="/" className="navbar-brand">Minstagram</a>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
               <span className="navbar-toggler-icon"></span>
             </button>
@@ -18,13 +18,13 @@ class Header extends React.Component {
               </form>
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
-                  <a id="theme-switcher" className="nav-link" href="#"><i className="far fa-compass"></i></a>
+                  <a href="/" id="theme-switcher" className="nav-link"><i className="far fa-compass"></i></a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#"><i className="far fa-heart"></i></a>
+                  <a href="/" className="nav-link"><i className="far fa-heart"></i></a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#"><i className="far fa-user"></i></a>
+                  <a href="/" className="nav-link"><i className="far fa-user"></i></a>
                 </li>
               </ul>
             </div>
