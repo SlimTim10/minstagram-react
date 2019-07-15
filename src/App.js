@@ -81,10 +81,18 @@ class App extends React.Component {
     });
   }
 
+  hidePost = id => {
+    const idx = this.state.posts.findIndex(post => post.id === id);
+    this.setState({
+      posts: [...this.state.posts.slice(0, idx), ...this.state.posts.slice(idx + 1)]
+    });
+  }
+
   componentDidMount() {
     setTimeout(() => {
-      this.likePost('2');
-      this.likePost('2');
+      // this.likePost('2');
+      // this.likePost('2');
+      // this.hidePost('1');
     }, 2000);
   }
 
@@ -94,7 +102,7 @@ class App extends React.Component {
       <Header />
       <NewPost addPost={this.addPost} />
       <div className="row">
-        <Posts posts={this.state.posts} />
+        <Posts posts={this.state.posts} likePost={this.likePost} hidePost={this.hidePost} />
         <Suggestions />
       </div>
     </div>
