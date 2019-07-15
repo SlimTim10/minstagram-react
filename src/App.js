@@ -6,7 +6,7 @@ import NewPost from './NewPost';
 import Posts from './Posts';
 import Suggestions from './Suggestions';
 
-const TENOR_API_KEY = ''';
+const TENOR_API_KEY = '';
 
 const generateRandomID = () => {
   const chars = 'abcdefghijklmnopqrstuvwxyz1234567890';
