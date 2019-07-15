@@ -6,7 +6,7 @@ import NewPost from './NewPost';
 import Posts from './Posts';
 import Suggestions from './Suggestions';
 
-const TENOR_API_KEY = '';
+const TENOR_API_KEY = 'Y54FJKUQRSXW';
 
 const generateRandomID = () => {
   const chars = 'abcdefghijklmnopqrstuvwxyz1234567890';
@@ -34,6 +34,18 @@ class App extends React.Component {
           name: 'Bob',
           text: 'Integer ex risus, pharetra eu nulla eget, semper pharetra mi.',
           liked: false
+        }
+      ],
+      suggestions: [
+        {
+          id: '1',
+          avatar: 'assets/avatar1.jpg',
+          name: 'Alice'
+        },
+        {
+          id: '2',
+          avatar: 'assets/avatar2.jpg',
+          name: 'Bob'
         }
       ]
     };
@@ -67,7 +79,9 @@ class App extends React.Component {
 
             const oldPosts = this.state.posts;
             const newPosts = [newPost, ...oldPosts];
-            this.setState({ posts: newPosts });
+            this.setState({ posts: newPosts }, () => {
+              this.updateSuggestions();
+            });
           });
       });
   }
@@ -88,12 +102,59 @@ class App extends React.Component {
     });
   }
 
+  top = n => {
+    const posts = Object.values(this.state.posts.reduce((acc, post) => {
+      if (acc[post.name]) {
+        return {
+          ...acc,
+          [post.name]: {
+            id: acc[post.name].id,
+            name: post.name,
+            avatar: post.avatar,
+            count: acc[post.name].count + 1
+          }
+        };
+      } else {
+        return {
+          ...acc,
+          [post.name]: {
+            id: generateRandomID(),
+            name: post.name,
+            avatar: post.avatar,
+            count: 1
+          }
+        };
+      }
+    }, {}));
+    posts.sort((a, b) => b.count - a.count);
+    return posts.slice(0, n);
+  }
+
+  updateSuggestions = () => {
+    this.setState({
+      suggestions: this.top(3)
+    });
+  }
+
   componentDidMount() {
+    // this.addPost('cat');
+    // this.addPost('lizard');
+    // this.addPost('cat');
+    // this.addPost('cat');
+    // this.addPost('cat');
+    // this.addPost('dog');
+    // this.addPost('lizard');
+    // this.addPost('dog');
+    // this.addPost('dog');
+    // this.addPost('lizard');
+    // this.addPost('lizard');
+    // this.addPost('lizard');
     setTimeout(() => {
       // this.likePost('2');
       // this.likePost('2');
       // this.hidePost('1');
-    }, 2000);
+      // this.updateSuggestions();
+    }, 5000);
   }
 
   render() {
@@ -103,7 +164,7 @@ class App extends React.Component {
       <NewPost addPost={this.addPost} />
       <div className="row">
         <Posts posts={this.state.posts} likePost={this.likePost} hidePost={this.hidePost} />
-        <Suggestions />
+        <Suggestions suggestions={this.state.suggestions} />
       </div>
     </div>
     );
