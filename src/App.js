@@ -6,7 +6,7 @@ import NewPost from './NewPost';
 import Posts from './Posts';
 import Suggestions from './Suggestions';
 
-const TENOR_API_KEY = '';
+const TENOR_API_KEY = 'Y54FJKUQRSXW';
 
 // Returns a randomly generated ID
 const generateRandomID = () => {
@@ -35,18 +35,6 @@ class App extends React.Component {
           name: 'Bob',
           text: 'Integer ex risus, pharetra eu nulla eget, semper pharetra mi.',
           liked: false
-        }
-      ],
-      suggestions: [
-        {
-          id: '1',
-          avatar: 'assets/avatar1.jpg',
-          name: 'Alice'
-        },
-        {
-          id: '2',
-          avatar: 'assets/avatar2.jpg',
-          name: 'Bob'
         }
       ]
     };
@@ -81,29 +69,11 @@ class App extends React.Component {
 
             const oldPosts = this.state.posts;
             const newPosts = [newPost, ...oldPosts];
-            this.setState({ posts: newPosts }, () => {
-              this.updateSuggestions();
+            this.setState({
+              posts: newPosts
             });
           });
       });
-  }
-
-  // Toggles the liked property of a post by its ID
-  likePost = id => {
-    const idx = this.state.posts.findIndex(post => post.id === id);
-    const post = this.state.posts[idx];
-    post.liked = !post.liked;
-    this.setState({
-      posts: [...this.state.posts.slice(0, idx), post, ...this.state.posts.slice(idx + 1)]
-    });
-  }
-
-  // Removes a post from the state by its ID
-  hidePost = id => {
-    const idx = this.state.posts.findIndex(post => post.id === id);
-    this.setState({
-      posts: [...this.state.posts.slice(0, idx), ...this.state.posts.slice(idx + 1)]
-    });
   }
 
   // Returns the top n most popular posts (grouped by name)
@@ -135,21 +105,14 @@ class App extends React.Component {
     return posts.slice(0, n);
   }
 
-  // Updates the suggestions in the state
-  updateSuggestions = () => {
-    this.setState({
-      suggestions: this.top(3)
-    });
-  }
-
   render() {
     return (
     <div className="container">
       <Header />
       <NewPost addPost={this.addPost} />
       <div className="row">
-        <Posts posts={this.state.posts} likePost={this.likePost} hidePost={this.hidePost} />
-        <Suggestions suggestions={this.state.suggestions} />
+        <Posts posts={this.state.posts} />
+        <Suggestions />
       </div>
     </div>
     );

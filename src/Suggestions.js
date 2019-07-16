@@ -2,16 +2,6 @@ import React from 'react';
 
 class Suggestions extends React.Component {
   render() {
-    const items = this.props.suggestions.map(suggestion => (
-      <li key={suggestion.id} className="list-group-item">
-        <img
-          alt="avatar"
-          src={suggestion.avatar}
-          className="avatar mr-2" />
-        {suggestion.name}
-      </li>
-    ));
-    
     return (
       <aside id="suggestions" className="col-sm-auto">
         <div className="card">
@@ -19,7 +9,12 @@ class Suggestions extends React.Component {
             <h5 className="card-title">Suggestions</h5>
           </div>
           <ul className="list-group list-group-flush">
-            {items}
+            <li key="1" className="list-group-item">
+              <img alt="avatar1" src="assets/avatar1.jpg" className="avatar mr-2" />Alice
+            </li>
+            <li key="2" className="list-group-item">
+              <img alt="avatar2" src="assets/avatar2.jpg" className="avatar mr-2" />Bob
+            </li>
           </ul>
         </div>
         <small>&copy; 2019 MINSTAGRAM</small>
