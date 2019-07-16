@@ -6,8 +6,9 @@ import NewPost from './NewPost';
 import Posts from './Posts';
 import Suggestions from './Suggestions';
 
-const TENOR_API_KEY = 'Y54FJKUQRSXW';
+const TENOR_API_KEY = '';
 
+// Returns a randomly generated ID
 const generateRandomID = () => {
   const chars = 'abcdefghijklmnopqrstuvwxyz1234567890';
   return [...Array(6)].map(x => chars.split('')[Math.floor(Math.random()*chars.length)]).join('');
@@ -51,6 +52,7 @@ class App extends React.Component {
     };
   }
 
+  // Adds a post to the state with a random GIF of the given subject
   addPost = subject => {
     const rootEndpoint = `https://api.tenor.com/v1/random?key=${TENOR_API_KEY}`;
     const endpoint = rootEndpoint + `&contentfilter=high&media_filter=basic&limit=1&q=${subject}`;
@@ -86,6 +88,7 @@ class App extends React.Component {
       });
   }
 
+  // Toggles the liked property of a post by its ID
   likePost = id => {
     const idx = this.state.posts.findIndex(post => post.id === id);
     const post = this.state.posts[idx];
@@ -95,6 +98,7 @@ class App extends React.Component {
     });
   }
 
+  // Removes a post from the state by its ID
   hidePost = id => {
     const idx = this.state.posts.findIndex(post => post.id === id);
     this.setState({
@@ -102,6 +106,7 @@ class App extends React.Component {
     });
   }
 
+  // Returns the top n most popular posts (grouped by name)
   top = n => {
     const posts = Object.values(this.state.posts.reduce((acc, post) => {
       if (acc[post.name]) {
@@ -130,31 +135,11 @@ class App extends React.Component {
     return posts.slice(0, n);
   }
 
+  // Updates the suggestions in the state
   updateSuggestions = () => {
     this.setState({
       suggestions: this.top(3)
     });
-  }
-
-  componentDidMount() {
-    // this.addPost('cat');
-    // this.addPost('lizard');
-    // this.addPost('cat');
-    // this.addPost('cat');
-    // this.addPost('cat');
-    // this.addPost('dog');
-    // this.addPost('lizard');
-    // this.addPost('dog');
-    // this.addPost('dog');
-    // this.addPost('lizard');
-    // this.addPost('lizard');
-    // this.addPost('lizard');
-    setTimeout(() => {
-      // this.likePost('2');
-      // this.likePost('2');
-      // this.hidePost('1');
-      // this.updateSuggestions();
-    }, 5000);
   }
 
   render() {
